@@ -26,6 +26,18 @@ function VoyagesCtrl($log, PortCall) {
       });
   };
 
+  ctrl.getVoyages = (etd, eta, transhipment) => {
+   const params = { etd, eta, transhipment};
+
+    PortCall.getVoyages(params).$promise
+      .then(voyages => {
+        ctrl.voyages = voyages;
+      })
+      .catch(err => {
+        $log.error(err);
+      });
+  };  
+
 }
 
 VoyagesCtrl.$inject = ['$log', 'PortCall'];

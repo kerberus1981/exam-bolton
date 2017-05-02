@@ -1,9 +1,7 @@
 <div class="container">
 
   <h1>Voyages</h1>
-
   <!-- Sample interface -->
-
   <form class="form-inline">
     <div class="form-group">
       <label>Departure Port</label>
@@ -29,32 +27,46 @@
         is-open="ctrl.isEtaOpen" />
     </div>
 
+    <div class="form-group checkbox-container">
+      <label>Include Transhipment</label>
+      <input
+        type="checkbox"
+        class="form-control checkbox checkbox-primary"
+        ng-model="ctrl.transhipment"
+        />
+    </div>
+
     <button
       type="submit"
       class="btn btn-primary"
-      ng-click="ctrl.getRoutes(ctrl.etd, ctrl.eta)">
+      ng-click="ctrl.getVoyages(ctrl.etd, ctrl.eta, ctrl.transhipment)">
       Find
     </button>
 
   </form>
 
   <!-- Display the list of Voyage data - this is just as an example of displaying the initial data -->
+
   <table class="table table-striped"
          ng-show="ctrl.voyages.length">
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Port</th>
-        <th>ETA</th>
+        <th>Vessel</th>
+        <th>Port(Origin)</th>
         <th>ETD</th>
+        <th>Port(Destination)</th>
+        <th>ETA</th>
+        <th>Details</th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="voyage in ctrl.voyages">
-        <th>{{ voyage.id }}</th>
-        <td>{{ voyage.port }}</td>
-        <td>{{ (voyage.eta | date) || 'N/A' }}</td>
-        <td>{{ (voyage.etd | date) || 'N/A' }}</td>
+        <td>{{ voyage.vessel }}</td>
+        <td>{{ voyage.fromPort }}</td>
+        <td>{{ (voyage.fromEtd | date) || 'N/A' }}</td>
+        <td>{{ voyage.toPort }}</td>
+        <td>{{ (voyage.toEta | date) || 'N/A' }}</td>
+        <td>{{ voyage.details }}</td>        
       </tr>
     </tbody>
   </table>
