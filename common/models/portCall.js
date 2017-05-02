@@ -115,7 +115,7 @@ module.exports = function(PortCall) {
                 var ports = [];
                 //get all voyages for this routeId to serve as bridge route. its like current->bridge->destination
                 for(counter1 = 1 ; counter1 < routes.length; counter1++){
-                  if(currentRoute.routeId == currentRoute.routeId){
+                  if(currentRoute.routeId == routes[counter1].routeId){
                     ports.push(routes[counter1].port);                   
                     var counter2;
                     for(counter2 = counter1+1; counter2 < routes.length; counter2++){
